@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
 import com.ijeoma.fragment.R
 import com.ijeoma.fragment.databinding.FragmentHomeBinding
 
@@ -25,18 +26,15 @@ class HomeFragment : Fragment() {
        manager = requireActivity().supportFragmentManager
         binding.apply {
             NextButton.setOnClickListener {
+                openNextFragment()
 
             }
 
         }
         return binding.root
     }
-private fun OpenNextFragment(){
-    manager.commit {
-        replace<NewFragment>(R.id.FragmentContainerView)
-        setRecorderingAllowed(True)
-        addToBackStack("")
+private fun openNextFragment(){
+    requireActivity().findNavController(R.id. nav_host_fragment_container)
+        .navigate(R.id. action_homeFragment_to_newFragment)
     }
-}
-
 }
